@@ -2,4 +2,4 @@
 	{{ time | secondsToTime | date:'mm:ss' }}
 </p>
 
-<button ng-click="activate()">Click</button>
+<button ng-click="activate()">{{ !timePromise ? 'Start' : 'Reset' }}</button>

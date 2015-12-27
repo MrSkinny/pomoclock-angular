@@ -10,18 +10,18 @@
 			},
 
 			link: function(scope,el,attrs){
-				var timePromise = null;
+				scope.timePromise = null;
 
 				var startTimer = function(){
-					timePromise = $interval(function(){
+					scope.timePromise = $interval(function(){
 						scope.time--;
 					}, 1000);
 				};
 
 				var stopTimer = function(){
-					$interval.cancel(timePromise);
+					$interval.cancel(scope.timePromise);
 					scope.time = scope.defaultTime;
-					timePromise = null;
+					scope.timePromise = null;
 				};
 
 				scope.getTime = function(){
@@ -29,7 +29,7 @@
 				};
 
 				scope.activate = function(){
-					if (timePromise){
+					if (scope.timePromise){
 						stopTimer();
 					} else {
 						startTimer();
