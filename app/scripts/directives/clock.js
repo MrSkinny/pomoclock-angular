@@ -10,9 +10,33 @@
 			},
 
 			link: function(scope,el,attrs){
+				var lastStartTime;
+
+				var startTimer = function(){
+					scope.timePromise = $interval(function(){
+						scope.time--;
+					}, 1000);
+				};
+
+				var stopTimer = function(){
+					if (scope.timePromise) {
+						$interval.cancel(scope.timePromise);
+						scope.timePromise = null;
+					}
+				};
+
+				var resetTimeTo = function(num){
+					scope.time = num;
+					lastStartTime = num;
+				};
+
+				var toggleOnBreak = function(){
+					scope.onBreak = scope.onBreak ? false : true;
+				};
+
 				scope.workSessions = 0;
 				scope.onBreak = false;
-				var lastStartTime;
+				scope.timePromise = null;
 
 				scope.$watch('onBreak', function(val){
 					scope.clockMessage = val ? "Now Resting" : "Time to Work!";
@@ -35,7 +59,7 @@
 							} else {
 								resetTimeTo(DEFAULTS.restStart);
 							}
-							
+
 						} else {
 						// COMPLETED REST
 
@@ -46,26 +70,6 @@
 						scope.toggleOnBreak();
 					}
 				});
-
-				scope.timePromise = null;
-
-				var startTimer = function(){
-					scope.timePromise = $interval(function(){
-						scope.time--;
-					}, 1000);
-				};
-
-				var stopTimer = function(){
-					if (scope.timePromise) {
-						$interval.cancel(scope.timePromise);
-						scope.timePromise = null;
-					}
-				};
-
-				var resetTimeTo = function(num){
-					scope.time = num;
-					lastStartTime = num;
-				};
 
 				scope.getTime = function(){
 					return scope.time;
@@ -80,12 +84,10 @@
 					}
 				};
 
-				scope.toggleOnBreak = function(options){
-					scope.onBreak = scope.onBreak ? false : true;
-				};
 
-
+				// ======================================
 				// debug
+				// ======================================
 				scope.increaseWorkSessions = function(){
 					scope.workSessions++;
 				};
@@ -93,6 +95,11 @@
 				scope.playSound = function(name){
 					SoundBox.play(name);
 				};
+
+				scope.toggleOnBreak = function(options){
+					toggleOnBreak();
+				};
+				// -------------------------------------
 
 			}
 		};

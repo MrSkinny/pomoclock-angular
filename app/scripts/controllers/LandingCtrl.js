@@ -2,9 +2,6 @@
 
 	function LandingCtrl(DEFAULTS){
 
-		this.defaultTime = DEFAULTS.workStart;
-		this.time = this.defaultTime;
-
 
 	}
 
