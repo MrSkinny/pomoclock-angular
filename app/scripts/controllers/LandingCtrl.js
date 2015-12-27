@@ -2,6 +2,7 @@
 
 	function LandingCtrl(DEFAULTS){
 
+		this.time = DEFAULTS.workStart;
 
 	}
 

@@ -5,8 +5,7 @@
 			restrict: 'E',
 			templateUrl: '/templates/directives/clock.html',
 			scope: {
-				time: '=',
-				defaultTime: '='
+				time: '='
 			},
 
 			link: function(scope,el,attrs){
@@ -43,32 +42,34 @@
 				});
 
 				scope.$watch('time', function(val){
-					if (val === 0) { 
+					if (val === 0) scope.$broadcast('timeExpired');
+				});
+
+				scope.$on('timeExpired', function(){
 					// TIMER ENDED
-						stopTimer();
 
-						if (!scope.onBreak) {
-						// COMPLETED WORK
+					if (!scope.onBreak) {
+					// COMPLETED WORK
 
-							SoundBox.play('dingdong');
-							scope.workSessions++;
+						SoundBox.play('dingdong');
+						scope.workSessions++;
 
-							if (scope.workSessions === 4){
-								resetTimeTo(DEFAULTS.longRestStart);
-								scope.workSessions = 0;
-							} else {
-								resetTimeTo(DEFAULTS.restStart);
-							}
-
+						if (scope.workSessions === 4){
+							resetTimeTo(DEFAULTS.longRestStart);
+							scope.workSessions = 0;
 						} else {
-						// COMPLETED REST
-
-							SoundBox.play('bell');
-							resetTimeTo(DEFAULTS.workStart);
+							resetTimeTo(DEFAULTS.restStart);
 						}
 
-						scope.toggleOnBreak();
+					} else {
+					// COMPLETED REST
+
+						SoundBox.play('bell');
+						resetTimeTo(DEFAULTS.workStart);
 					}
+
+					scope.toggleOnBreak();
+
 				});
 
 				scope.getTime = function(){
