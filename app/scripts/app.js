@@ -19,7 +19,12 @@
 
 	angular
 		.module('pomoClock', ['ui.router', 'firebase'])
-		.config(config);
+		.config(config)
+		.constant('DEFAULTS', {
+			workStart: 5,
+			restStart: 10,
+			longRestStart: 15
+		});
 
 }());
 

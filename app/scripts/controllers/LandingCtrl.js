@@ -1,14 +1,14 @@
 (function(){
 
-	function LandingCtrl(){
+	function LandingCtrl(DEFAULTS){
 
-		this.defaultTime = 1500;
-		this.time = 1500;
+		this.defaultTime = DEFAULTS.workStart;
+		this.time = this.defaultTime;
 
 
 	}
 
 	angular
 		.module('pomoClock')
-		.controller('LandingCtrl', [LandingCtrl]);
+		.controller('LandingCtrl', ['DEFAULTS', LandingCtrl]);
 }());
