@@ -7,13 +7,14 @@
 </head>
 <body ng-app="pomoClock">
 
-		<ui-view></ui-view>
+	<ui-view></ui-view>
 
-		<!-- LIBRARIES -->
-		<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-		<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+	<!-- LIBRARIES -->
+	<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.0/buzz.min.js"></script>
 
 		<!-- APP -->
     <script src="/scripts/app.js"></script>
@@ -26,5 +27,9 @@
 
     <!-- FILTERS -->
     <script src="/scripts/filters/secondsToTime.js"></script>
+
+    <!-- SERVICES -->
+    <script src="/scripts/services/constants.js"></script>
+    <script src="/scripts/services/SoundBox.js"></script>
 </body>
 </html>

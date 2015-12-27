@@ -1,6 +1,6 @@
 (function(){
 
-	function clock($interval, DEFAULTS){
+	function clock($interval, DEFAULTS, SoundBox){
 		return {
 			restrict: 'E',
 			templateUrl: '/templates/directives/clock.html',
@@ -19,18 +19,27 @@
 				});
 
 				scope.$watch('time', function(val){
-					if (val === 0) { // if timer ends
+					if (val === 0) { 
+					// TIMER ENDED
 						stopTimer();
 
 						if (!scope.onBreak) {
+						// COMPLETED WORK
+
+							SoundBox.play('dingdong');
 							scope.workSessions++;
+
 							if (scope.workSessions === 4){
 								resetTimeTo(DEFAULTS.longRestStart);
 								scope.workSessions = 0;
 							} else {
 								resetTimeTo(DEFAULTS.restStart);
 							}
+							
 						} else {
+						// COMPLETED REST
+
+							SoundBox.play('bell');
 							resetTimeTo(DEFAULTS.workStart);
 						}
 
@@ -75,9 +84,14 @@
 					scope.onBreak = scope.onBreak ? false : true;
 				};
 
+
 				// debug
 				scope.increaseWorkSessions = function(){
 					scope.workSessions++;
+				};
+
+				scope.playSound = function(name){
+					SoundBox.play(name);
 				};
 
 			}
@@ -86,5 +100,5 @@
 
 	angular
 		.module('pomoClock')
-		.directive('clock', ['$interval', 'DEFAULTS', clock]);
+		.directive('clock', ['$interval', 'DEFAULTS', 'SoundBox', clock]);
 }());
