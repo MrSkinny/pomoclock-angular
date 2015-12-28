@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Pomodoro</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body ng-app="pomoClock">
@@ -14,6 +15,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 	<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>    
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.0/buzz.min.js"></script>
 
 		<!-- APP -->
@@ -21,6 +24,7 @@
 
     <!-- CONTROLLERS -->
     <script src="/scripts/controllers/LandingCtrl.js"></script>
+    <script src="/scripts/controllers/TaskListCtrl.js"></script>
 
     <!-- DIRECTIVES -->
     <script src="/scripts/directives/clock.js"></script>
@@ -31,5 +35,6 @@
     <!-- SERVICES -->
     <script src="/scripts/services/constants.js"></script>
     <script src="/scripts/services/SoundBox.js"></script>
+    <script src="/scripts/services/Tasks.js"></script>
 </body>
 </html>
