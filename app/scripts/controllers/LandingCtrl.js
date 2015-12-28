@@ -4,6 +4,7 @@
 
 		this.time = DEFAULTS.workStart;
 
+
 	}
 
 	angular

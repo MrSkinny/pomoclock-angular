@@ -3,7 +3,7 @@
 	function Tasks($firebaseArray){
 		var Tasks = {};
 
-		var taskRef = new Firebase('https://brilliant-inferno-6177.firebaseio.com/tasks');
+		var taskRef = new Firebase('https://test-pomo.firebaseio.com//tasks');
 		var tasks = $firebaseArray(taskRef);
 
 		Tasks.all = tasks;

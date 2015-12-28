@@ -1,18 +1,25 @@
 (function(){
 
 	function TaskListCtrl($scope, Tasks){
+		var ctrl = this;
 
-		$scope.tasks = Tasks.all;
+		var createDate = function(){
+			var date = new Date();
+			return(`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
+		}
+		
+		ctrl.tasks = Tasks.all;
 
 		$scope.addTask = function(task){
-			$scope.tasks.$add({
+			ctrl.tasks.$add({
 				text: task,
-				completed: false
+				completed: false,
+				created_at: createDate()
 			});
 		};
 
 		$scope.removeTask = function(task){
-			$scope.tasks.$remove(task);
+			ctrl.tasks.$remove(task);
 		};
 
 	}
