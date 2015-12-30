@@ -25,9 +25,14 @@
 			</form>
 
 			<div class="list-group">
-				<div class="list-group-item" ng-repeat="task in tasksCtrl.tasks | orderBy: '-created_at'">
-					<div ng-click="tasks.makeActive(task.$id)" id="{{ task.$id }}">
-            {{task.text}} <a href="" ng-click="tasksCtrl.removeTask(task)"><i style="float: right">X</i></a>
+				<div 
+          ng-class="{'list-group-item': true, 'active': tasksCtrl.activeTask === task.$id}" 
+          ng-repeat="task in tasksCtrl.tasks | orderBy: '-created_at'"
+        >
+					<div ng-click="tasksCtrl.makeActive(task.$id)" id="{{ task.$id }}">
+            {{task.text}} 
+            <span ng-if="task.workSessions && task.workSessions > 0">({{task.workSessions}})</span>
+            <a href="" ng-click="tasksCtrl.removeTask(task)"><i style="float: right">X</i></a>
 					</div>
 				</div>
 			</div>

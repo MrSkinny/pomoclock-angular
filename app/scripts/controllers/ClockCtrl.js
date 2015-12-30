@@ -1,6 +1,6 @@
 (function(){
   function ClockCtrl($scope){
-    
+
   }
   
   angular

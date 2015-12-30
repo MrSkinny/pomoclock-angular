@@ -69,6 +69,7 @@
 
 						SoundBox.play('dingdong');
 						scope.workSessions++;
+            scope.$emit('workSessionCompleted');
 
 						if (scope.workSessions === 4){
 							resetTimeTo(DEFAULTS.longRestStart);
@@ -89,6 +90,11 @@
 					toggleOnBreak();
 
 				});
+        
+        scope.$on('newTaskSelected', function(event, id){
+          scope.activeTask = id;            
+        });
+        
         
         // - - - - - -
         // METHODS
