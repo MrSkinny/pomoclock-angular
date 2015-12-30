@@ -9,6 +9,11 @@
 			},
 
 			link: function(scope,el,attrs){
+        
+        // ======
+        // Private vars / methods
+        // ------
+        
 				var lastStartTime;
 
 				var startTimer = function(){
@@ -32,11 +37,19 @@
 				var toggleOnBreak = function(){
 					scope.onBreak = scope.onBreak ? false : true;
 				};
-
+        
+        // ==============
+        // PUBLIC props / methods
+        // --------------
+        
 				scope.workSessions = 0;
 				scope.onBreak = false;
+        scope.onLongRest = false;
 				scope.timePromise = null;
 
+        // - - - - - 
+        // Listeners
+        // - - - - - 
 				scope.$watch('onBreak', function(val){
 					scope.clockMessage = val ? "Now Resting" : "Time to Work!";
 				});
@@ -56,6 +69,7 @@
 
 						if (scope.workSessions === 4){
 							resetTimeTo(DEFAULTS.longRestStart);
+              scope.onLongRest = true;
 							scope.workSessions = 0;
 						} else {
 							resetTimeTo(DEFAULTS.restStart);
@@ -65,12 +79,17 @@
 					// COMPLETED REST
 
 						SoundBox.play('bell');
+            if (scope.onLongRest) scope.onLongRest = false;
 						resetTimeTo(DEFAULTS.workStart);
 					}
 
-					scope.toggleOnBreak();
+					toggleOnBreak();
 
 				});
+        
+        // - - - - - -
+        // METHODS
+        // - - - - - - 
 
 				scope.getTime = function(){
 					return scope.time;
