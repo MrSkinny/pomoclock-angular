@@ -20,13 +20,13 @@
 					<input type="text" class="form-control" ng-model="tasksCtrl.taskInput">
 				</div>
 				<div class="form-group">	
-					<button class="btn btn-default" ng-click="addTask(tasksCtrl.taskInput)">Add</button>
+					<button class="btn btn-default" ng-click="tasksCtrl.addTask(tasksCtrl.taskInput)">Add</button>
 				</div>
 			</form>
 
 			<div class="list-group">
 				<div class="list-group-item" ng-repeat="task in tasksCtrl.tasks | orderBy: '-created_at'">
-					{{task.text}} <a href="" ng-click="removeTask(task)"><i style="float: right">X</i></a>
+					{{task.text}} <a href="" ng-click="tasksCtrl.removeTask(task)"><i style="float: right">X</i></a>
 				</div>
 			</div>
 

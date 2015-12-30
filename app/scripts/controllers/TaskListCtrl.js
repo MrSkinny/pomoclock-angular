@@ -1,12 +1,12 @@
 (function(){
 
-	function TaskListCtrl($scope, Tasks, Utilities){
+	function TaskListCtrl(Tasks, Utilities){
 		var ctrl = this;
 
 		ctrl.tasks = Tasks.all;
 		ctrl.taskInput = null;
 
-		$scope.addTask = function(){
+		ctrl.addTask = function(){
 			ctrl.tasks.$add({
 				text: ctrl.taskInput,
 				completed: false,
@@ -15,7 +15,7 @@
 			ctrl.taskInput = null;
 		};
 
-		$scope.removeTask = function(task){
+		ctrl.removeTask = function(task){
 			ctrl.tasks.$remove(task);
 		};
 
@@ -23,5 +23,5 @@
 
 	angular
 		.module('pomoClock')
-		.controller('TaskListCtrl', ['$scope', 'Tasks', 'Utilities', TaskListCtrl]);
+		.controller('TaskListCtrl', ['Tasks', 'Utilities', TaskListCtrl]);
 }());
