@@ -1,6 +1,6 @@
 (function(){
 
-	function clock($interval, DEFAULTS, SoundBox){
+	function clock($interval, DEFAULTS, SoundBox, Tasks){
 		return {
 			restrict: 'E',
 			templateUrl: '/templates/directives/clock.html',
@@ -46,6 +46,9 @@
 				scope.onBreak = false;
         scope.onLongRest = false;
 				scope.timePromise = null;
+        scope.noOfPauses = 0;
+        scope.activeTask = null;
+
 
         // - - - - - 
         // Listeners
@@ -103,6 +106,19 @@
 						startTimer();
 					}
 				};
+        
+        scope.pause = function(){
+          if (scope.timePromise){
+            stopTimer();
+            scope.noOfPauses++;
+          } else {
+            startTimer();
+          }
+        };
+        
+        scope.buttonLabel = function(){
+          return scope.timePromise ? 'Reset' : 'Start';
+        };
 
 
 				// ======================================
@@ -127,5 +143,5 @@
 
 	angular
 		.module('pomoClock')
-		.directive('clock', ['$interval', 'DEFAULTS', 'SoundBox', clock]);
+		.directive('clock', ['$interval', 'DEFAULTS', 'SoundBox', 'Tasks', clock]);
 }());

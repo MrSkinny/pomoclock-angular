@@ -4,8 +4,8 @@
 	{{ time | secondsToTime | date:'mm:ss' }}
 </p>
 
-<button ng-click="activate()">{{ !timePromise ? 'Start' : 'Reset' }}</button>
-<button ng-hide="onBreak" ng-click="toggleOnBreak()">Take a Break!</button>
+<button class="btn btn-default" ng-disabled="!activeTask" ng-click="activate()">{{ buttonLabel() }}</button>
+<button class="btn btn-default" ng-hide="onBreak" ng-click="toggleOnBreak()">Take a Break!</button>
 
 
 <hr />
@@ -19,5 +19,8 @@
 		Work sessions: {{ workSessions }} <button ng-click="increaseWorkSessions()">+</button><br />
 		<button ng-click="playSound('bell')">Bell</button>
 		<button ng-click="playSound('dingdong')">Ding Dong</button>
+    <p>
+      Active Task: {{ activeTask }}
+    </p>
 	</div>
 </div>

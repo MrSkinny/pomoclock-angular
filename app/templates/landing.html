@@ -26,7 +26,9 @@
 
 			<div class="list-group">
 				<div class="list-group-item" ng-repeat="task in tasksCtrl.tasks | orderBy: '-created_at'">
-					{{task.text}} <a href="" ng-click="tasksCtrl.removeTask(task)"><i style="float: right">X</i></a>
+					<div ng-click="tasks.makeActive(task.$id)" id="{{ task.$id }}">
+            {{task.text}} <a href="" ng-click="tasksCtrl.removeTask(task)"><i style="float: right">X</i></a>
+					</div>
 				</div>
 			</div>
 
@@ -35,7 +37,9 @@
 	</div>
 
 	<div class="col-md-9">
-		<clock time="landing.time"></clock>
+    <div ng-controller="ClockCtrl as clock">
+  		<clock time="landing.time"></clock>
+    </div>
 	</div>
 
 </div>
