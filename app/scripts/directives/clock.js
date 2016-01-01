@@ -38,6 +38,8 @@
 					scope.onBreak = scope.onBreak ? false : true;
 				};
         
+        var tasks = Tasks.all;
+        
         // ==============
         // PUBLIC props / methods
         // --------------
@@ -46,7 +48,6 @@
 				scope.onBreak = false;
         scope.onLongRest = false;
 				scope.timePromise = null;
-        scope.noOfPauses = 0;
         scope.activeTask = null;
 
 
@@ -92,7 +93,9 @@
 				});
         
         scope.$on('newTaskSelected', function(event, id){
-          scope.activeTask = id;            
+          scope.activeTask = tasks.$getRecord(id);
+          resetTimeTo(DEFAULTS.workStart);
+          scope.onBreak = false;
         });
         
         
@@ -107,23 +110,14 @@
 				scope.activate = function(){
 					if (scope.timePromise){
 						stopTimer();
-						resetTimeTo(lastStartTime);
+            scope.$emit('sessionPaused');
 					} else {
 						startTimer();
 					}
 				};
         
-        scope.pause = function(){
-          if (scope.timePromise){
-            stopTimer();
-            scope.noOfPauses++;
-          } else {
-            startTimer();
-          }
-        };
-        
         scope.buttonLabel = function(){
-          return scope.timePromise ? 'Reset' : 'Start';
+          return scope.timePromise ? 'Pause' : 'Start';
         };
 
 

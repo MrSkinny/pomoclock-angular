@@ -11,6 +11,10 @@
     $scope.$on('workSessionCompleted', function(e){
       $scope.$broadcast('notifyWorkSessionCompleted');
     });
+    
+    $scope.$on('sessionPaused', function(event){
+      $scope.$broadcast('notifySessionPaused');
+    });
 
 	}
 

@@ -13,13 +13,19 @@
 
 			<div class="list-group">
 				<div 
-          ng-class="{'list-group-item': true, 'active': tasksCtrl.activeTask === task.$id}" 
+          ng-class="{'list-group-item': true,
+                     'active': tasksCtrl.activeTask === task.$id,
+                     'completed': task.completed }" 
           ng-repeat="task in tasksCtrl.tasks | orderBy: '-created_at'"
         >
 					<div ng-click="tasksCtrl.makeActive(task.$id)" id="{{ task.$id }}">
             {{task.text}} 
-            <span ng-if="task.workSessions && task.workSessions > 0">({{task.workSessions}})</span>
+            <a href="" ng-click="tasksCtrl.toggleComplete(task)"><i style="float: right; padding-left: 10px;" class="glyphicon glyphicon-ok"></i></a>
             <a href="" ng-click="tasksCtrl.removeTask(task)"><i style="float: right">X</i></a>
-					</div>
+            
+            <br />
+            <span class="task-stat" ng-if="task.workSessions && task.workSessions > 0">Work Sessions: {{task.workSessions}}</span>
+            <span class="task-stat" ng-if="task.interruptions && task.interruptions > 0">Interruptions: {{task.interruptions}}</span>
+            
 				</div>
 			</div>

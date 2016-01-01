@@ -26,6 +26,11 @@
       $scope.$emit('userSelectedTask', id);
     };
     
+    ctrl.toggleComplete = function(task){
+      task.completed = task.completed ? false : true;
+      ctrl.tasks.$save(task);
+    };
+    
     $scope.$on('newTaskSelected', function(event, id){
       ctrl.activeTask = id;
     });
@@ -35,6 +40,16 @@
         var task = ctrl.tasks.$getRecord(ctrl.activeTask);
         if (task) {
           task.workSessions++;
+          ctrl.tasks.$save(task);
+        }
+      } 
+    });
+    
+    $scope.$on('notifySessionPaused', function(){
+      if (ctrl.activeTask){
+        var task = ctrl.tasks.$getRecord(ctrl.activeTask);
+        if (task) {
+          task.interruptions++;
           ctrl.tasks.$save(task);
         }
       } 

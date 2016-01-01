@@ -2,3 +2,17 @@
 	background-color: #bcd;
 	width: 300px;
 }
+
+.list-group-item {
+  font-size: 1.3em;
+  font-weight: 900;
+}
+
+.list-group-item .task-stat {
+  font-size: 0.9em;
+  font-weight: normal;
+}
+
+.completed {
+  background-color: limegreen;
+}

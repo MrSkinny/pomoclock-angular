@@ -1,11 +1,13 @@
-<h3>{{ clockMessage }}</h3>
+<h2>{{ clockMessage }}</h2>
+<h3>{{ activeTask.text || "Please select or add a task" }}</h3>
 
 <p>
 	{{ time | secondsToTime | date:'mm:ss' }}
 </p>
 
-<button class="btn btn-default" ng-disabled="!activeTask" ng-click="activate()">{{ buttonLabel() }}</button>
-<button class="btn btn-default" ng-hide="onBreak" ng-click="toggleOnBreak()">Take a Break!</button>
+<button class="btn btn-default" ng-hide="activeTask && activeTask.completed" ng-disabled="!activeTask" ng-click="activate()">{{ buttonLabel() }}</button>
+<button class="btn btn-default" ng-hide="activeTask && activeTask.completed" ng-disabled="!activeTask" ng-click="reset()">Reset</button>
+<button class="btn btn-default" ng-hide="(activeTask && activeTask.completed) || onBreak" ng-click="toggleOnBreak()">Take a Break!</button>
 
 
 <hr />
